@@ -3,7 +3,7 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/**",
+                "${workspaceFolder}/sources/hermes",
                 "~/Qt/6.5.0/macos/lib/**"
             ],
             "defines": [],

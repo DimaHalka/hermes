@@ -1,10 +1,24 @@
 #include <iostream>
 
-#include <QString>
+#include "TriangleWindow.h"
 
+#include <QGuiApplication>
+
+// https://doc.qt.io/qt-6/qtopengl-openglwindow-example.html
 int main(int argc, char** argv) 
 {
-    QString qstr("Qt is available for hermes binary");
-    std::cout << qstr.toStdString().c_str() << std::endl;
-    return 0;
+    QGuiApplication app(argc, argv);
+
+    QSurfaceFormat format;
+    format.setSamples(16);
+
+    TriangleWindow window;
+    window.setFormat(format);
+    window.resize(640, 480);
+    window.show();
+
+    window.setAnimating(true);
+
+    return app.exec();
 }
+

@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "qstring": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "qopenglfunctions": "cpp"
     }
 }
