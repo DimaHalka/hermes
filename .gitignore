@@ -1,3 +1,8 @@
+build
+
+# macOS artifacts
+.DS_Store
+
 # Prerequisites
 *.d
 
