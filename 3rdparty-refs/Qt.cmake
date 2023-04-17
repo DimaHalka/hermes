@@ -4,6 +4,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     Core 
     Gui
     OpenGL
+    PrintSupport
     Widgets
 ) 
 

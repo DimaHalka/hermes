@@ -7,7 +7,3 @@ MainWindow::MainWindow(QWidget *parent)
 
   setWindowTitle("hermes");
 }
-
-
-
-
