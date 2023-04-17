@@ -1,14 +1,13 @@
 add_executable(hermes 
     main.cpp
-    OpenGLWindow.h
-    OpenGLWindow.cpp
-    TriangleWindow.h
-    TriangleWindow.cpp
+    MainWindow.cpp
+    MainWindow.h
+    MainWindow.ui
+    MainWindow.qrc
 )
 
 target_link_libraries(hermes PRIVATE 
     Qt6::Core
     Qt6::Gui
-    Qt6::OpenGL
     Qt6::Widgets
 )
