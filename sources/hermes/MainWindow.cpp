@@ -41,5 +41,5 @@ MainWindow::MainWindow(QWidget *parent)
   customPlot->graph(0)->setData(x0, y0);
   customPlot->replot();
 
-  setWindowTitle("hermes");
+  setWindowTitle("");
 }
