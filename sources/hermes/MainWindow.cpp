@@ -1,5 +1,8 @@
 #include "MainWindow.h"
 
+#include "ExpressionSin.h"
+#include "ExpressionCos.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -19,26 +22,47 @@ MainWindow::MainWindow(QWidget *parent)
   QSharedPointer<QCPAxisTickerPi> piTicker(new QCPAxisTickerPi);
   customPlot->xAxis->setTicker(piTicker);
 
-  QPen pen;
-  pen.setStyle(Qt::SolidLine); // Qt::DashLine
-  pen.setWidth(2);
-  pen.setColor(Qt::red);
+  auto plot = [customPlot](const IExpression& expression){
+    QPen pen;
+    pen.setStyle(Qt::SolidLine); 
+    pen.setWidth(2); 
+    pen.setColor(expression.GetColor());
 
-  QVector<double> x0(250), y0(250);
-  double start  = range_x.lower;
-  double end  = range_x.upper;
-  double step = (end - start) / 250;
-  auto idx = 0U;
-  for(auto curr = start; curr < end; curr += step, idx++)
-  {
-    x0[idx] = curr;
-    y0[idx] = qSin(curr);
-  }
+    const auto& data = expression.GetData();
 
+    auto p_graph = customPlot->addGraph();
+    p_graph->setPen(pen);
+    p_graph->setName(expression.GetName());
+    p_graph->setData(data.first, data.second);
+  };
+
+  plot(ExpressionSin());
+  plot(ExpressionCos());
+
+  /*
+  auto esin = ExpressionSin()
+  auto data = esin.GetData();
+  QPen pen0;
+  pen0.setStyle(Qt::SolidLine); // Qt::DashLine
+  pen0.setWidth(2); 
+  pen0.setColor(esin.GetColor());
   customPlot->addGraph();
-  customPlot->graph(0)->setPen(pen);
+  customPlot->graph(0)->setPen(pen0);
   customPlot->graph(0)->setName("Sine");
-  customPlot->graph(0)->setData(x0, y0);
+  customPlot->graph(0)->setData(data.first, data.second);
+
+  auto ecos = ExpressionCos().GetData();
+  auto data = ecos.GetData();
+  QPen pen1;
+  pen1.setStyle(Qt::SolidLine); // Qt::DashLine
+  pen1.setWidth(2); 
+  pen1.setColor(ecos.GetColor());
+  customPlot->addGraph();
+  customPlot->graph(1)->setPen(pen1);
+  customPlot->graph(1)->setName("Cosine");
+  customPlot->graph(1)->setData(data1.first, data.second);
+  */
+
   customPlot->replot();
 
   setWindowTitle("");

@@ -4,6 +4,7 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/sources/**",
+                "${workspaceFolder}/sources/hermes",
                 "~/Qt/**"
             ],
             "defines": [],

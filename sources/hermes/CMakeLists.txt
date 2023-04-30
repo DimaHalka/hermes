@@ -1,11 +1,19 @@
 add_executable(hermes 
     main.cpp
+    
     QCustomPlot.h
     QCustomPlot.cpp
+
     MainWindow.cpp
     MainWindow.h
     MainWindow.ui
     MainWindow.qrc
+
+    IExpression.h
+    ExpressionSin.h
+    ExpressionSin.cpp
+    ExpressionCos.h
+    ExpressionCos.cpp
 )
 
 target_include_directories(hermes PRIVATE
