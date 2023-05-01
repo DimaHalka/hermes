@@ -1,6 +1,8 @@
 add_executable(hermes 
     main.cpp
     
+    exprtk.hpp
+
     QCustomPlot.h
     QCustomPlot.cpp
 
@@ -14,6 +16,8 @@ add_executable(hermes
     ExpressionSin.cpp
     ExpressionCos.h
     ExpressionCos.cpp
+    ExpressionGeneric.h
+    ExpressionGeneric.cpp
 )
 
 target_include_directories(hermes PRIVATE

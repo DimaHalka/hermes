@@ -2,6 +2,7 @@
 
 #include "ExpressionSin.h"
 #include "ExpressionCos.h"
+#include "ExpressionGeneric.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -38,30 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   plot(ExpressionSin());
   plot(ExpressionCos());
-
-  /*
-  auto esin = ExpressionSin()
-  auto data = esin.GetData();
-  QPen pen0;
-  pen0.setStyle(Qt::SolidLine); // Qt::DashLine
-  pen0.setWidth(2); 
-  pen0.setColor(esin.GetColor());
-  customPlot->addGraph();
-  customPlot->graph(0)->setPen(pen0);
-  customPlot->graph(0)->setName("Sine");
-  customPlot->graph(0)->setData(data.first, data.second);
-
-  auto ecos = ExpressionCos().GetData();
-  auto data = ecos.GetData();
-  QPen pen1;
-  pen1.setStyle(Qt::SolidLine); // Qt::DashLine
-  pen1.setWidth(2); 
-  pen1.setColor(ecos.GetColor());
-  customPlot->addGraph();
-  customPlot->graph(1)->setPen(pen1);
-  customPlot->graph(1)->setName("Cosine");
-  customPlot->graph(1)->setData(data1.first, data.second);
-  */
+  plot(ExpressionGeneric());
 
   customPlot->replot();
 
