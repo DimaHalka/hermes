@@ -1,47 +1,58 @@
 #include "MainWindow.h"
 
-#include "ExpressionSin.h"
-#include "ExpressionCos.h"
-#include "ExpressionGeneric.h"
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
   ui.setupUi(this);
 
-  auto *customPlot = ui.customPlot;
+  QCustomPlot *customPlot = ui.customPlot;
 
   QCPRange range_x(-9.0, 9.0);
   QCPRange range_y(-2.0, 2.0);
-  
+
   customPlot->legend->setVisible(true);
   customPlot->legend->setFont(QFont("Helvetica", 9));
   customPlot->xAxis->setRange(range_x);
   customPlot->yAxis->setRange(range_y);
   customPlot->setLocale(QLocale(QLocale::English, QLocale::UnitedKingdom));
-  
+
   QSharedPointer<QCPAxisTickerPi> piTicker(new QCPAxisTickerPi);
   customPlot->xAxis->setTicker(piTicker);
 
-  auto plot = [customPlot](const IExpression& expression){
-    QPen pen;
-    pen.setStyle(Qt::SolidLine); 
-    pen.setWidth(2); 
-    pen.setColor(expression.GetColor());
-
-    const auto& data = expression.GetData();
-
-    auto p_graph = customPlot->addGraph();
-    p_graph->setPen(pen);
-    p_graph->setName(expression.GetName());
-    p_graph->setData(data.first, data.second);
-  };
-
-  plot(ExpressionSin());
-  plot(ExpressionCos());
-  plot(ExpressionGeneric());
-
-  customPlot->replot();
+  connect(ui.btnAdd, SIGNAL(pressed()), this, SLOT(onAdd()));
+  connect(ui.lineEdit, SIGNAL(returnPressed()), this, SLOT(onAdd()));
 
   setWindowTitle("");
+}
+
+void MainWindow::plot(const QString& name, const points2d &pts)
+{
+  QCustomPlot *customPlot = ui.customPlot;
+
+  QPen pen;
+  pen.setStyle(Qt::SolidLine);
+  pen.setWidth(2);
+  pen.setColor(Qt::black);
+
+  auto p_graph = customPlot->addGraph();
+  p_graph->setPen(pen);
+  p_graph->setName(name);
+  p_graph->setData(pts.first, pts.second);
+
+  customPlot->replot();
+}
+
+void MainWindow::onAdd()
+{
+  QString txt = ui.lineEdit->text();
+  if (txt.isEmpty())
+    return;
+
+  plot(txt, eval(txt.toStdString(), {-9.0, 9.0}, 250));
+
+  QListWidget *listPlots = ui.listPlots;
+  listPlots->addItem(txt);
+  QListWidgetItem *item = listPlots->item(listPlots->count() - 1);
+  item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+  item->setCheckState(Qt::Checked);
 }

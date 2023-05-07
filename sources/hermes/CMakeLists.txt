@@ -1,8 +1,6 @@
 add_executable(hermes 
     main.cpp
     
-    exprtk.hpp
-
     QCustomPlot.h
     QCustomPlot.cpp
 
@@ -10,18 +8,11 @@ add_executable(hermes
     MainWindow.h
     MainWindow.ui
     MainWindow.qrc
-
-    IExpression.h
-    ExpressionSin.h
-    ExpressionSin.cpp
-    ExpressionCos.h
-    ExpressionCos.cpp
-    ExpressionGeneric.h
-    ExpressionGeneric.cpp
 )
 
 target_include_directories(hermes PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR} 
+    ${CMAKE_CURRENT_SOURCE_DIR}/..  # So that you can include <shared_lib/header.h> 
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
@@ -30,4 +21,5 @@ target_link_libraries(hermes PRIVATE
     Qt6::Gui
     Qt6::PrintSupport
     Qt6::Widgets
+    expreval
 )

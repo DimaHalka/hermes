@@ -4,8 +4,9 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/sources/**",
-                "${workspaceFolder}/sources/hermes",
-                "~/Qt/**"
+                "${workspaceFolder}/sources/hermes/",
+                "${workspaceFolder}/build/**",
+                "/Users/dmytrohalka/Qt/**"
             ],
             "defines": [],
             "macFrameworkPath": [
