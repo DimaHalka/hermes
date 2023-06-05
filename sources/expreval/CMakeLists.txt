@@ -5,10 +5,18 @@ add_library(expreval SHARED
   expreval.h
 
   exprtk.hpp
- )
+)
+
+target_include_directories(expreval  PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR} 
+    ${CMAKE_CURRENT_SOURCE_DIR}/..  # So that you can include <shared_lib/header.h> 
+    ${CMAKE_CURRENT_BINARY_DIR}
+)
 
 target_link_libraries(expreval PRIVATE 
   Qt6::Core
+
+  datamodel
 )
 
 if(WIN32)

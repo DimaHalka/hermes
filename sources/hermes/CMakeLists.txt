@@ -21,6 +21,8 @@ target_link_libraries(hermes PRIVATE
     Qt6::Gui
     Qt6::PrintSupport
     Qt6::Widgets
+
+    datamodel
     expreval
 )
 

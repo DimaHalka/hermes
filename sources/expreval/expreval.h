@@ -2,11 +2,7 @@
 
 #include "exports.h"
 
-#include <QVector>
-#include <QPair>
-
-EXPR_EVAL_API typedef QPair<double, double> range_t;
-EXPR_EVAL_API typedef QPair<QVector<double>, QVector<double>> points2d;
+#include <datamodel/graph.h>
 
 EXPR_EVAL_API
 points2d eval(
