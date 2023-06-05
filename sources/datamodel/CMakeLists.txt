@@ -1,6 +1,7 @@
 add_library(datamodel SHARED  
   exports.h
 
+  types.h
   graph.cpp
   graph.h
  )

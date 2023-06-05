@@ -1,13 +1,19 @@
 #pragma once
 
 #include "exports.h"
+#include "types.h"
 
-#include <QPair>
-#include <QVector>
+#include <QObject>
 
-DATA_MODEL_API typedef QPair<double, double> range_t;
-DATA_MODEL_API typedef QPair<QVector<double>, QVector<double>> points2d;
+class DATA_MODEL_API graph : public QObject {
+  Q_OBJECT
 
-struct DATA_MODEL_API graph {
+public:
+  void init(const points2d& data);
+
+signals:
+  void changed();
+
+private:
   points2d m_data;
 };
