@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
   customPlot->legend->setFont(QFont("Helvetica", 9));
   customPlot->xAxis->setRange(range_x);
   customPlot->yAxis->setRange(range_y);
+  customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
   customPlot->setLocale(QLocale(QLocale::English, QLocale::UnitedKingdom));
 
   QSharedPointer<QCPAxisTickerPi> piTicker(new QCPAxisTickerPi);
