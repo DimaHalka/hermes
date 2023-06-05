@@ -2,7 +2,7 @@
 
 #include "exports.h"
 
-#include <datamodel/graph.h>
+#include <datamodel/types.h>
 
 EXPR_EVAL_API
 points2d eval(
