@@ -23,3 +23,8 @@ target_link_libraries(hermes PRIVATE
     Qt6::Widgets
     expreval
 )
+
+if(WIN32)
+  add_custom_command(TARGET hermes POST_BUILD
+                     COMMAND ${WIN_DEPLOY_QT} --no-translations $<TARGET_FILE:hermes>)
+endif(WIN32)
