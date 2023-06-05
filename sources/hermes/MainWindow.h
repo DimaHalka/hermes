@@ -21,6 +21,7 @@ private:
 
 private slots:
   void onAdd();
+  void onXRangeChanged(QCPRange);
 };
 
 #endif // MAIN_WINDOW_H

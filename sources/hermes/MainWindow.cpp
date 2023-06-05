@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   connect(ui.btnAdd, SIGNAL(pressed()), this, SLOT(onAdd()));
   connect(ui.lineEdit, SIGNAL(returnPressed()), this, SLOT(onAdd()));
+  connect(ui.customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), this, SLOT(onXRangeChanged(QCPRange)));
 
   setWindowTitle("");
 }
@@ -56,4 +57,11 @@ void MainWindow::onAdd()
   QListWidgetItem *item = listPlots->item(listPlots->count() - 1);
   item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
   item->setCheckState(Qt::Checked);
+}
+
+
+void MainWindow::onXRangeChanged(QCPRange range)
+{
+  // range.lower;
+  // range.upper;
 }
